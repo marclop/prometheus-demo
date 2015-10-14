@@ -1,0 +1,43 @@
+---
+pushgateway:
+  image: prom/pushgateway
+  ports:
+    - "9091:9091"
+
+prometeus:
+  image: prom/prometheus
+  ports:
+    - "9090:9090"
+  volumes:
+    - ./prometeus.yml:/etc/prometheus/prometheus.yml
+  links:
+    - pushgateway
+#    - exporter
+
+incrementer:
+  build: incrementer
+  links:
+    - pushgateway
+  volumes:
+    - ../../:/app
+  ports:
+    - "5000:5000"
+
+#promdash:
+#  image: prom/promdash
+#  environment:
+#    - DATABASE_URL=sqlite3:/tmp/prom/file.sqlite3
+#  links:
+#    - prometeus
+#  ports:
+#    - "3000:3000"
+#  volumes:
+#    - /tmp/prom:/tmp/prom
+  #command: ./bin/rake db:migrate
+
+#exporter:
+#  image: prom/node-exporter
+#  volumes_from:
+#    - incrementer
+#  ports:
+#    - "9100:9100"
