@@ -1,6 +1,6 @@
 # Prometheus environment
 
-This repo contains a prometheus environment compsed by:
+This repo contains a prometheus environment composed by:
 * [Prometheus server](https://github.com/prometheus/prometheus)
 * [Push Gateway](https://github.com/prometheus/pushgateway) (which after the VelocityConf NYC will probably stop the use of that, for the obvious reasons pointed out by [Björn](https://github.com/beorn7))
 * Incrementer (python app)

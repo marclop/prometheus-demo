@@ -17,7 +17,7 @@ class getCounter(Resource):
         # counter = incrementCounter('newcounter')
         result = counter.inc()
         if result:
-            return {"ok": 200}, 201
+            return {"ok": 201}, 201
         else:
             return {"ERROR": 500}, 500
 
@@ -29,13 +29,13 @@ class getGauge(Resource):
         gauge = incrementGauge('newgauge')
         result = gauge.inc(random.random() * 10)
         if result:
-            return {"ok": 200}, 201
+            return {"ok": 201}, 201
         else:
             return {"ERROR": 500}, 500
 
 
-api.add_resource(getCounter, '/counter')
-api.add_resource(getGauge, '/gauge')
+api.add_resource(getCounter, '/counter', methods=['GET'])
+api.add_resource(getGauge, '/gauge', methods=['GET'])
 
 if __name__ == '__main__':
     app.debug = True
